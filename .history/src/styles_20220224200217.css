@@ -1,24 +1,25 @@
-/* stylelint-disable order/properties-alphabetical-order */
 fieldset {
   display: block;
-  float: left;
   width: 100px;
+  float: left;
   border: 5px solid;
 }
 
 .card {
   display: block;
-  float: left;
   width: 200px;
+  float: left;
   padding: 0.1% 1%;
-  border: 5px solid goldenrod;
   height: auto;
+  border: 5px solid goldenrod;
 }
 
 img {
-  width: 100%;
+  width: 100%
 }
 
 .description {
   font-size: 0.6em;
 }
+
+
