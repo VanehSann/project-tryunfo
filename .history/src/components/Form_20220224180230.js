@@ -24,7 +24,6 @@ class Form extends React.Component {
           Descrição
           <input
             type="textarea"
-            name="cardDescription"
             id="descricao"
             data-testid="description-input"
             value={ cardDescription }
@@ -35,7 +34,6 @@ class Form extends React.Component {
           Attr01
           <input
             type="number"
-            name="cardAttr1"
             id="attr1"
             data-testid="attr1-input"
             value={ cardAttr1 }
@@ -45,7 +43,6 @@ class Form extends React.Component {
         <label htmlFor="attr2">
           Attr02
           <input
-            name="cardAttr2"
             type="number"
             id="attr2"
             data-testid="attr2-input"
@@ -56,7 +53,6 @@ class Form extends React.Component {
         <label htmlFor="attr3">
           Attr03
           <input
-            name="cardAttr3"
             type="number"
             id="attr3"
             data-testid="attr3-input"
@@ -67,7 +63,6 @@ class Form extends React.Component {
         <label htmlFor="image">
           Imagem
           <input
-            name="cardImage"
             type="text"
             id="image"
             data-testid="image-input"
@@ -78,7 +73,6 @@ class Form extends React.Component {
         <label htmlFor="rare">
           Raridade
           <select
-            name="cardRare"
             type="select"
             id="rare"
             data-testid="rare-input"
@@ -92,7 +86,6 @@ class Form extends React.Component {
         </label>
         <label htmlFor="trunfo">
           <input
-            name="cardTrunfo"
             type="checkbox"
             id="trunfo"
             data-testid="trunfo-input"
@@ -102,7 +95,6 @@ class Form extends React.Component {
           Super Trybe Trunfo
         </label>
         <button
-          name="isSaveButtonDisable"
           type="button"
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }

@@ -23,7 +23,7 @@ class Card extends React.Component {
       <div className="card">
         <p data-testid="name-card">{ cardName }</p>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
-        <p data-testid="description-card" className="description">{ cardDescription }</p>
+        <p data-testid="description-card">{ cardDescription }</p>
         <ul>
           <li data-testid="attr1-card">{ cardAttr1 }</li>
           <li data-testid="attr2-card">{ cardAttr2 }</li>

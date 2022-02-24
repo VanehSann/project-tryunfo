@@ -12,7 +12,7 @@ class Form extends React.Component {
         <label htmlFor="name">
           Nome
           <input
-            name="cardName"
+            // name="cardName"
             type="text"
             data-testid="name-input"
             id="name"
