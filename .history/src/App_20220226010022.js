@@ -16,7 +16,6 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
-      cardArray: [],
     };
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -48,23 +47,6 @@ validando = () => {
   });
 }
 
-onSaveButtonClick = (event) => {
-  event.preventDefault();
-  this.setState((prevState) => ({
-    cardArray: [...prevState.cardArray, event],
-    cardName: '',
-    cardDescription: '',
-    cardAttr1: 0,
-    cardAttr2: 0,
-    cardAttr3: 0,
-    cardImage: '',
-    cardRare: 'normal',
-    cardTrunfo: false,
-    isSaveButtonDisabled: true,
-
-  }));
-}
-
 render() {
   const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
     cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
@@ -82,7 +64,6 @@ render() {
         cardTrunfo={ cardTrunfo }
         onInputChange={ this.onInputChange }
         isSaveButtonDisabled={ isSaveButtonDisabled }
-        onSaveButtonClick={ this.onSaveButtonClick }
       />
       <Card
         cardName={ cardName }
