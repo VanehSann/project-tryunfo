@@ -40,8 +40,11 @@ validando = () => {
   const doisUmZero = 210;
   const isValid = numberCard.every((card) => card >= 0);
   const isMaValid = numberCard.every((card) => card < noveUm);
-  const sum = (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)) > doisUmZero;
-  const testandoTudo = isNotEmpty && isValid && isMaValid && !sum;
+  const isSumValid = (
+    parseInt(cardAttr1, 10) + parseInt(cardAttr2, 10)
+     + parseInt(cardAttr3, 10)) > doisUmZero;
+
+  const testandoTudo = isNotEmpty && isValid && isMaValid && isSumValid;
   this.setState({
     isSaveButtonDisabled: !testandoTudo,
   });

@@ -9,9 +9,9 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
@@ -30,20 +30,15 @@ class App extends React.Component {
 
 validando = () => {
   const { cardName, cardDescription, cardImage } = this.state;
-  const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
-  //
+  const { cardAtr1, cardAttr2, cardAttr3 } = this.state;
   const textsCard = [cardName, cardDescription, cardImage];
   const isNotEmpty = textsCard.every((card) => card.length > 0);
-  //
-  const numberCard = [cardAttr1, cardAttr2, cardAttr3];
-  const noveUm = 91;
-  const doisUmZero = 210;
-  const isValid = numberCard.every((card) => card >= 0);
-  const isMaValid = numberCard.every((card) => card < noveUm);
-  const sum = (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)) > doisUmZero;
-  const testandoTudo = isNotEmpty && isValid && isMaValid && !sum;
+  const numberCard = [cardAtr1, cardAttr2, cardAttr3];
+  const isValid = numberCard.every((card) => card > 0 && card < 91);
+  console.log(isNotEmpty);
   this.setState({
-    isSaveButtonDisabled: !testandoTudo,
+    isSaveButtonDisabled: !isNotEmpty,
+
   });
 }
 

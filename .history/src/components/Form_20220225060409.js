@@ -23,9 +23,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="descricao">
           Descrição
-          <textarea
-            rows="10"
-            cols="20"
+          <input
             type="textarea"
             name="cardDescription"
             id="descricao"
@@ -38,7 +36,6 @@ class Form extends React.Component {
           Attr01
           <input
             min="0"
-            max="90"
             type="number"
             name="cardAttr1"
             id="attr1"
@@ -51,7 +48,6 @@ class Form extends React.Component {
           Attr02
           <input
             min="0"
-            max="90"
             name="cardAttr2"
             type="number"
             id="attr2"
@@ -64,7 +60,6 @@ class Form extends React.Component {
           Attr03
           <input
             min="0"
-            max="90"
             name="cardAttr3"
             type="number"
             id="attr3"

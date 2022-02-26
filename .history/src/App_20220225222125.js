@@ -31,19 +31,16 @@ class App extends React.Component {
 validando = () => {
   const { cardName, cardDescription, cardImage } = this.state;
   const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
-  //
   const textsCard = [cardName, cardDescription, cardImage];
   const isNotEmpty = textsCard.every((card) => card.length > 0);
-  //
   const numberCard = [cardAttr1, cardAttr2, cardAttr3];
   const noveUm = 91;
   const doisUmZero = 210;
-  const isValid = numberCard.every((card) => card >= 0);
-  const isMaValid = numberCard.every((card) => card < noveUm);
-  const sum = (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)) > doisUmZero;
-  const testandoTudo = isNotEmpty && isValid && isMaValid && !sum;
+  const isValid = numberCard.every((card) => card >= 0 && card < noveUm);
+// console.log(isNotEmpty);
+  console.log(isValid);
   this.setState({
-    isSaveButtonDisabled: !testandoTudo,
+    isSaveButtonDisabled: false,
   });
 }
 

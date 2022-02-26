@@ -41,6 +41,7 @@ validando = () => {
   const isValid = numberCard.every((card) => card >= 0);
   const isMaValid = numberCard.every((card) => card < noveUm);
   const sum = (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)) > doisUmZero;
+  console.log(sum)
   const testandoTudo = isNotEmpty && isValid && isMaValid && !sum;
   this.setState({
     isSaveButtonDisabled: !testandoTudo,

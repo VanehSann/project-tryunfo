@@ -9,9 +9,9 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
@@ -25,26 +25,41 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
-    }, this.validando);
+    }, () => {
+      const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
+      this.setState({
+        isSaveButtonDisabled: this.validaTodos(cardAttr1, cardAttr2, cardAttr3),
+      });
+    });
   }
 
-validando = () => {
-  const { cardName, cardDescription, cardImage } = this.state;
-  const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
-  //
-  const textsCard = [cardName, cardDescription, cardImage];
-  const isNotEmpty = textsCard.every((card) => card.length > 0);
-  //
-  const numberCard = [cardAttr1, cardAttr2, cardAttr3];
-  const noveUm = 91;
-  const doisUmZero = 210;
-  const isValid = numberCard.every((card) => card >= 0);
-  const isMaValid = numberCard.every((card) => card < noveUm);
-  const sum = (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)) > doisUmZero;
-  const testandoTudo = isNotEmpty && isValid && isMaValid && !sum;
-  this.setState({
-    isSaveButtonDisabled: !testandoTudo,
-  });
+  validation = (target) => {
+    const valor = 91;
+    if (target > 0 || target < valor) {
+      return false;
+    }
+    if (value.length <= 0) {
+      return true;
+    }
+  }
+
+  validationD = (value) => {
+    const noveUm = 91;
+    value = Number(value);
+    if (value > 0 && value < noveUm) {
+      return false;
+    }
+    return true;
+  }
+
+validaTodos = (value, value2, value3) => {
+  const valor1 = this.validationD([value]);
+  const valor2 = this.validationD([value2]);
+  const valor3 = this.validationD([value3]);
+  if (valor1 === true && valor2 === true && valor3 === true) {
+    return true;
+  }
+  return false;
 }
 
 render() {

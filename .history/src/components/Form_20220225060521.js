@@ -23,9 +23,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="descricao">
           Descrição
-          <textarea
-            rows="10"
-            cols="20"
+          <input
             type="textarea"
             name="cardDescription"
             id="descricao"
