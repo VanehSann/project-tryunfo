@@ -75,12 +75,12 @@ onSaveButtonClick = (event) => {
     cardTrunfo: false,
     isSaveButtonDisabled: true,
 
-  }), this.validaCheck);
+  }), console.log(this.state));
 }
 
 validaCheck = () => {
   this.setState((prevState) => ({
-    hasTrunfo: prevState.cardArray.some((card) => card.cardTrunfo === true),
+    hasTrunfo: prevState.cardArray.some((card) => card.cardTrunfo),
   }));
 };
 

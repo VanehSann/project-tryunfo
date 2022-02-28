@@ -49,22 +49,30 @@ validando = () => {
   });
 }
 
-onSaveButtonClick = (event) => {
+onSaveButtonClick = (event, stateAtual) => {
   event.preventDefault();
-  const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-    cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo } = this.state;
+  const {
+    cardName,
+    cardDescription,
+    cardAttr1,
+    cardAttr2,
+    cardAttr3,
+    cardImage,
+    cardRare,
+    cardTrunfo } = this.state;
 
+  const currentCard = {
+    cardName,
+    cardDescription,
+    cardAttr1,
+    cardAttr2,
+    cardAttr3,
+    cardImage,
+    cardRare,
+    cardTrunfo,
+  };
   this.setState((prevState) => ({
-    cardArray: [...prevState.cardArray, { cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      isSaveButtonDisabled,
-      hasTrunfo }],
+    cardArray: [...prevState.cardArray, currentCard],
     cardName: '',
     cardDescription: '',
     cardAttr1: 0,
@@ -75,12 +83,14 @@ onSaveButtonClick = (event) => {
     cardTrunfo: false,
     isSaveButtonDisabled: true,
 
-  }), this.validaCheck);
+  }), this.setState((prevState) => ({
+    hasTrunfo: prevState.cardArray.some((card) => card.cardTrunfo === true),
+  })));
 }
 
 validaCheck = () => {
   this.setState((prevState) => ({
-    hasTrunfo: prevState.cardArray.some((card) => card.cardTrunfo === true),
+    hasTrunfo: prevState.cardArray.some((card) => card.cardTrunfo),
   }));
 };
 
