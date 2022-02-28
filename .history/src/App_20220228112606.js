@@ -93,14 +93,6 @@ onDeleteClick = ({ target }) => {
   this.setState({ cardArray: newCardList }, this.validaCheck);
 }
 
-//
-handleInput = (event) => {
-  this.setState({
-    filtro: event.target.value,
-  });
-}
-//
-
 render() {
   const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
     cardRare, cardTrunfo, isSaveButtonDisabled,
@@ -164,9 +156,9 @@ render() {
           data-testid="name-filter"
           type="text"
           id="filtro"
-          onChange={ this.handleInput }
+          onChange={ this.onInputChange }
         />
-        {cardArray.filter((card) => card.cardName.includes(filtro))
+        {cardArray.filter((fil) => fil.className.includes(filtro))
           .map((card) => (
             <div key={ card.cardName }>
               <Card
