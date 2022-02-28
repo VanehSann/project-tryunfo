@@ -89,7 +89,7 @@ validaCheck = () => {
 onDeleteClick = ({ target }) => {
   const { cardArray } = this.state;
   const newCardList = cardArray.filter((newCard) => newCard.cardName !== target.id);
-  this.setState({ cardArray: newCardList }, this.validaCheck);
+  this.setState({ cardArray: newCardList });
 }
 
 render() {
@@ -137,7 +137,6 @@ render() {
               cardTrunfo={ card.cardTrunfo }
             />
             <button
-              data-testid="delete-button"
               type="button"
               name={ card.cardName }
               id={ card.cardName }

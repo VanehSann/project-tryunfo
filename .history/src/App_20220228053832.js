@@ -84,17 +84,13 @@ validaCheck = () => {
   }));
 };
 
-// Refêrencia de como apagar, filtrando, e depois atualizando.
-// https://stackoverflow.com/questions/48077103/remove-item-from-array-in-react
-onDeleteClick = ({ target }) => {
-  const { cardArray } = this.state;
-  const newCardList = cardArray.filter((newCard) => newCard.cardName !== target.id);
-  this.setState({ cardArray: newCardList }, this.validaCheck);
+onDeleteClick = (event) => {
+  console.log(event);
 }
 
 render() {
   const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-    cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo, cardArray } = this.state;
+    cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo, cardArray, onDeleteClick } = this.state;
   return (
     <div>
       <h1>Tryunfo</h1>
@@ -127,6 +123,7 @@ render() {
         {cardArray.map((card) => (
           <div key={ card.cardName }>
             <Card
+              key={ card.cardName }
               cardName={ card.cardName }
               cardDescription={ card.cardDescription }
               cardAttr1={ card.cardAttr1 }
@@ -135,17 +132,9 @@ render() {
               cardImage={ card.cardImage }
               cardRare={ card.cardRare }
               cardTrunfo={ card.cardTrunfo }
+              onDeleteClick={ this.onDeleteClick }
+              deleteButton
             />
-            <button
-              data-testid="delete-button"
-              type="button"
-              name={ card.cardName }
-              id={ card.cardName }
-              key={ card.cardName }
-              onClick={ (event) => this.onDeleteClick(event) }
-            >
-              X
-            </button>
           </div>
         ))}
       </div>
