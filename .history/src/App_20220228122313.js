@@ -19,6 +19,7 @@ class App extends React.Component {
       cardArray: [],
       hasTrunfo: false,
       filtro: '',
+      raroFiltro: 'todas',
     };
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -93,10 +94,19 @@ onDeleteClick = ({ target }) => {
   this.setState({ cardArray: newCardList }, this.validaCheck);
 }
 
+//
+handleInput = (event) => {
+  this.setState({
+    filtro: event.target.value,
+    raroFiltro: event.target.value,
+  });
+}
+//
+
 render() {
   const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
     cardRare, cardTrunfo, isSaveButtonDisabled,
-    hasTrunfo, cardArray, filtro } = this.state;
+    hasTrunfo, cardArray, filtro, raroFiltro } = this.state;
   return (
     <div>
       <h1>Tryunfo</h1>
@@ -125,39 +135,78 @@ render() {
         cardTrunfo={ cardTrunfo }
         onInputChange={ this.onInputChange }
       />
-      <label htmlFor="filtro">
-        <input
-          data-testid="name-filter"
-          type="text"
-          id="filtro"
-          onChange={ this.onInputChange }
-        />
-        {cardArray.filter((card) => card.cardName.includes(filtro))
-          .map((card) => (
-            <div key={ card.cardName }>
-              <Card
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
-              <button
-                data-testid="delete-button"
-                type="button"
-                name={ card.cardName }
-                id={ card.cardName }
-                key={ card.cardName }
-                onClick={ (event) => this.onDeleteClick(event) }
-              >
-                X
-              </button>
-            </div>
-          ))}
-      </label>
+      {/* <div>
+        {cardArray.map((card) => (
+          <div key={ card.cardName }>
+            <Card
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
+            <button
+              data-testid="delete-button"
+              type="button"
+              name={ card.cardName }
+              id={ card.cardName }
+              key={ card.cardName }
+              onClick={ (event) => this.onDeleteClick(event) }
+            >
+              X
+            </button>
+          </div>
+        ))}
+      </div> */}
+      <input
+        data-testid="name-filter"
+        type="text"
+        id="filtro"
+        onChange={ this.handleInput }
+      />
+      <select
+        data-testid="rare-filter"
+        id="raroFiltro"
+        onChange={ this.handleInput }
+      >
+        <option>Todas</option>
+        <option>normal</option>
+        <option>raro</option>
+        <option>muito raro</option>
+      </select>
+      {
+        cardArray
+          .filter((card) => card.cardName.includes(filtro))(raroFiltro === 'todas')
+          ? '' : cardArray
+            .filter((card) => card.cardRare.includes(raroFiltro))
+            .map((card) => (
+              <div key={ card.cardName }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  data-testid="delete-button"
+                  type="button"
+                  name={ card.cardName }
+                  id={ card.cardName }
+                  key={ card.cardName }
+                  onClick={ (event) => this.onDeleteClick(event) }
+                >
+                  X
+                </button>
+              </div>
+            ))
+      }
     </div>
   );
 }

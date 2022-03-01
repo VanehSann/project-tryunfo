@@ -93,6 +93,14 @@ onDeleteClick = ({ target }) => {
   this.setState({ cardArray: newCardList }, this.validaCheck);
 }
 
+//
+handleInput = (event) => {
+  this.setState({
+    filtro: event.target.value,
+  });
+}
+//
+
 render() {
   const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
     cardRare, cardTrunfo, isSaveButtonDisabled,
@@ -125,14 +133,47 @@ render() {
         cardTrunfo={ cardTrunfo }
         onInputChange={ this.onInputChange }
       />
+      {/* <div>
+        {cardArray.map((card) => (
+          <div key={ card.cardName }>
+            <Card
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
+            <button
+              data-testid="delete-button"
+              type="button"
+              name={ card.cardName }
+              id={ card.cardName }
+              key={ card.cardName }
+              onClick={ (event) => this.onDeleteClick(event) }
+            >
+              X
+            </button>
+          </div>
+        ))}
+      </div> */}
       <label htmlFor="filtro">
         <input
           data-testid="name-filter"
           type="text"
           id="filtro"
-          onChange={ this.onInputChange }
+          onChange={ this.handleInput }
         />
+        <select data-testid="rare-filter" id="raroFiltro" onChange={ this.handleInput }>
+          <option>Todas</option>
+          <option>normal</option>
+          <option>raro</option>
+          <option>muito raro</option>
+        </select>
         {cardArray.filter((card) => card.cardName.includes(filtro))
+          .filter((card) => card.cardName.includes(filtro))
           .map((card) => (
             <div key={ card.cardName }>
               <Card

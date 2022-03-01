@@ -19,6 +19,8 @@ class App extends React.Component {
       cardArray: [],
       hasTrunfo: false,
       filtro: '',
+      raroFiltro: 'todas',
+      superTrunfo: false,
     };
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -93,10 +95,24 @@ onDeleteClick = ({ target }) => {
   this.setState({ cardArray: newCardList }, this.validaCheck);
 }
 
+//
+handleInput = (event) => {
+  this.setState({
+    filtro: event.target.value,
+  });
+}
+
+handleSelect = (event) => {
+  this.setState({
+    raroFiltro: event.target.value,
+  });
+}
+//
+
 render() {
   const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
     cardRare, cardTrunfo, isSaveButtonDisabled,
-    hasTrunfo, cardArray, filtro } = this.state;
+    hasTrunfo, cardArray, filtro, raroFiltro, superTrunfo } = this.state;
   return (
     <div>
       <h1>Tryunfo</h1>
@@ -132,7 +148,30 @@ render() {
           id="filtro"
           onChange={ this.onInputChange }
         />
+        <select
+          data-testid="rare-filter"
+          id="raroFiltro"
+          name="raroFiltro"
+          onChange={ this.onInputChange }
+        >
+          <option>todas</option>
+          <option>normal</option>
+          <option>raro</option>
+          <option>muito raro</option>
+        </select>
+        <label htmlFor="superTrunfo">
+          <input
+            type="checkbox"
+            id="suṕerTrunfo"
+            name="superTrunfo"
+            data-testid="trunfo-filter"
+            onChange={ this.onInputChange }
+          />
+          Super Trybe Trunfo
+        </label>
         {cardArray.filter((card) => card.cardName.includes(filtro))
+          .filter((card) => card.cardRare.includes(raroFiltro))
+          // .filter((card) => (card.cardTrunfo === true).includes(superTrunfo))
           .map((card) => (
             <div key={ card.cardName }>
               <Card
