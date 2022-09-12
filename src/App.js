@@ -100,64 +100,70 @@ render() {
   return (
     <div>
       <h1>Tryunfo</h1>
-      <Form
-        cardName={ cardName }
-        cardDescription={ cardDescription }
-        cardAttr1={ cardAttr1 }
-        cardAttr2={ cardAttr2 }
-        cardAttr3={ cardAttr3 }
-        cardImage={ cardImage }
-        cardRare={ cardRare }
-        cardTrunfo={ cardTrunfo }
-        onInputChange={ this.onInputChange }
-        isSaveButtonDisabled={ isSaveButtonDisabled }
-        onSaveButtonClick={ this.onSaveButtonClick }
-        hasTrunfo={ hasTrunfo }
-      />
-      <Card
-        cardName={ cardName }
-        cardDescription={ cardDescription }
-        cardAttr1={ cardAttr1 }
-        cardAttr2={ cardAttr2 }
-        cardAttr3={ cardAttr3 }
-        cardImage={ cardImage }
-        cardRare={ cardRare }
-        cardTrunfo={ cardTrunfo }
-        onInputChange={ this.onInputChange }
-      />
-      <label htmlFor="filtro">
-        <input
-          data-testid="name-filter"
-          type="text"
-          id="filtro"
-          onChange={ this.onInputChange }
+      <section>
+        <Form
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          onInputChange={ this.onInputChange }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
+          hasTrunfo={ hasTrunfo }
         />
-        {cardArray.filter((card) => card.cardName.includes(filtro))
-          .map((card) => (
-            <div key={ card.cardName }>
-              <Card
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
-              <button
-                data-testid="delete-button"
-                type="button"
-                name={ card.cardName }
-                id={ card.cardName }
-                key={ card.cardName }
-                onClick={ (event) => this.onDeleteClick(event) }
-              >
-                X
-              </button>
-            </div>
-          ))}
-      </label>
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          onInputChange={ this.onInputChange }
+        />
+      </section>
+      <section>
+        <h2>Todas as cartas</h2>
+        <label htmlFor="filtro">
+          <input
+            data-testid="name-filter"
+            type="text"
+            id="filtro"
+            name="filtro"
+            onChange={ this.onInputChange }
+          />
+          {cardArray.filter((card) => card.cardName.includes(filtro))
+            .map((card) => (
+              <div key={ card.cardName }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  data-testid="delete-button"
+                  type="button"
+                  name={ card.cardName }
+                  id={ card.cardName }
+                  key={ card.cardName }
+                  onClick={ (event) => this.onDeleteClick(event) }
+                >
+                  X
+                </button>
+              </div>
+            ))}
+        </label>
+      </section>
     </div>
   );
 }
