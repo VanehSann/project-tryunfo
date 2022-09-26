@@ -112,7 +112,7 @@ Tecnologias utilizadas ( Hard Skills )
  - JSX
  </td></tr> 
   <tr><td> 
- - React: Componentes de classe
+ - React: Componentes de classe, estados, eventos e formulários com React.
  </td></tr>
     </table>
       </blockquote>
